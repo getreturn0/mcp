@@ -1,0 +1,25 @@
+# Source files
+*.ts
+!*.d.ts
+
+# Test files
+__tests__/
+*.test.ts
+jest.config.cjs
+test-publish.js
+
+# Development files
+tsconfig.json
+add-shebang.js
+deploy.js
+
+# Logs
+logs/
+*.log
+
+# Other
+node_modules/
+.git/
+.gitignore
+README.md
+

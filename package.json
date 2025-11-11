@@ -1,0 +1,56 @@
+{
+  "name": "@return-0/mcp-server",
+  "version": "1.0.1",
+  "description": "Local MCP server for return0",
+  "main": "dist/index.js",
+  "bin": {
+    "return0-mcp-server": "dist/index.js"
+  },
+  "files": [
+    "dist/",
+    "LICENSE"
+  ],
+  "scripts": {
+    "start": "node dist/index.js",
+    "build": "tsc",
+    "postbuild": "node add-shebang.js",
+    "dev": "tsx index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepublishOnly": "npm run build",
+    "test:publish": "node test-publish.js",
+    "version:patch": "node deploy.js patch",
+    "version:minor": "node deploy.js minor",
+    "version:major": "node deploy.js major",
+    "deploy": "node deploy.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "reflect-metadata": "^0.2.1",
+    "rxjs": "^7.8.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/nock": "^10.0.3",
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.7",
+    "jest": "^30.2.0",
+    "nock": "^14.0.10",
+    "ts-jest": "^29.4.5",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "variable-extraction",
+    "debugging",
+    "return0"
+  ],
+  "author": "return0",
+  "license": "SEE LICENSE IN LICENSE",
+  "homepage": "https://getreturn0.com"
+}
