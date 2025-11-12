@@ -10,14 +10,7 @@ return0 enables developers to debug production Node.js applications in real-time
 - **Live Demo**: [getreturn0.com/livedemo](https://getreturn0.com/livedemo)
 - **Documentation**: [getreturn0.com/docs](https://getreturn0.com/docs)
 
-## Features
-
-- **Real-time Production Debugging**: Debug production applications in real-time
-- **Live Variable Monitoring**: Connect to live variables in running Node.js applications and observe their values in real-time
-- **Execution Flow Observation**: Monitor execution flow and understand runtime behavior directly in your IDE
-- **AST Analysis**: Automatically corrects line numbers using TypeScript AST analysis for accurate variable location
-- **Cursor IDE Integration**: Seamlessly integrates with Cursor IDE through MCP (Model Context Protocol)
-- **Next.js & Vercel Support**: Perfect for debugging Next.js applications deployed on Vercel and other remote platforms
+![Chat Demo](chatdemo.gif)
 
 ## Configuration in Cursor
 
@@ -73,7 +66,7 @@ The configuration should look like this in your `mcp.json` file:
 
 **Note:** Replace `"your-api-key-here"` with your actual return0 API key. If you don't have an API key yet, see the [Getting Your API Key](#getting-your-api-key) section above for instructions, or you can use `"demo"` for testing purposes. The MCP server will be automatically installed via npx when Cursor starts.
 
-## Usage
+## Tools
 
 This MCP server provides a `variable_extractor` tool that can be used by MCP-compatible clients.
 
@@ -99,7 +92,7 @@ Extracts the runtime value, type, and timestamp of variables from production cod
 {
   "files": [
     {
-      "fileName": "/path/to/your/file.ts",
+      "fileName": "C:\\Users\\username\\project\\src\\app\\api\\route.ts",
       "variables": [
         {
           "name": "userData",
@@ -110,37 +103,6 @@ Extracts the runtime value, type, and timestamp of variables from production cod
   ]
 }
 ```
-
-## Development
-
-### Prerequisites
-
-- Node.js 20+
-- npm
-
-### Setup
-
-```bash
-# Install dependencies
-npm install
-
-# Build the project
-npm run build
-
-# Run in development mode
-npm run dev
-
-# Run tests
-npm test
-```
-
-### Scripts
-
-- `npm run build` - Compile TypeScript to JavaScript
-- `npm run dev` - Run the server in development mode with tsx
-- `npm test` - Run tests
-- `npm run test:watch` - Run tests in watch mode
-- `npm run test:publish` - Test the package publish workflow
 
 ## How It Works
 
