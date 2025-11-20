@@ -4,6 +4,7 @@ import { handleVariableExtractorCase } from "../handleVariableExtractorCase";
 
 process.env.WORKSPACE_FOLDER_PATHS = `${__dirname}\\examplerepo`;
 process.env.RETURN0_API_KEY = "demo";
+process.env.RETURN0_USE_DEVHOST = "true"; // Use localhost:7000 for tests
 
 describe("localmcp", () => {
   beforeEach(() => {
@@ -13,7 +14,12 @@ describe("localmcp", () => {
 
   afterEach(() => {
     // Ensure all interceptors were used
-    nock.isDone();
+    if (!nock.isDone()) {
+      const pending = nock.pendingMocks();
+      nock.cleanAll();
+      throw new Error(`Pending nock interceptors: ${pending.join(", ")}`);
+    }
+    nock.cleanAll();
   });
 
   it("should be defined", (done) => {
@@ -56,7 +62,6 @@ describe("localmcp", () => {
       .post("/variable-extractor")
       .matchHeader("Content-Type", "application/json")
       .matchHeader("api-key", "demo")
-      .matchHeader("github-url", "https://github.com/Amir-K/ComplexAPI")
       .reply(200, mockResponse);
 
     // Test data
@@ -77,7 +82,6 @@ describe("localmcp", () => {
       headers: {
         "Content-Type": "application/json",
         "api-key": "demo",
-        "github-url": "https://github.com/Amir-K/ComplexAPI",
       },
       body: JSON.stringify(requestBody),
     });
@@ -195,7 +199,6 @@ describe("localmcp", () => {
         .post("/variable-extractor")
         .matchHeader("Content-Type", "application/json")
         .matchHeader("api-key", "demo")
-        .matchHeader("github-url", "https://github.com/Amir-K/ComplexAPI")
         .reply(200, mockResponse);
 
       // ACT
