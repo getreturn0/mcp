@@ -173,35 +173,10 @@ describe("localmcp", () => {
     });
 
     it("should handle read file errors", async () => {
-      // ARRANGE
-
+      // ARRANGE - Use a file path that doesn't exist to trigger file read error
       const fileName = `app/api/balances/route.ts`;
 
-      // Mock the handleVariableExtractorCase endpoint
-      const mockResponse = {
-        message: "Variables extracted successfully",
-        status: "success",
-        data: {
-          variables: [
-            {
-              name: "previousBalance",
-              value: 1000,
-              type: "number",
-              lineNumber: 14,
-              // fileName: "app/api/balances/route.ts",
-              fileName,
-            },
-          ],
-        },
-      };
-
-      const scope = nock("http://localhost:7000")
-        .post("/variable-extractor")
-        .matchHeader("Content-Type", "application/json")
-        .matchHeader("api-key", "demo")
-        .reply(200, mockResponse);
-
-      // ACT
+      // ACT - When file can't be read, function returns early with error (no HTTP call)
       const result = await handleVariableExtractorCase({
         files: [
           {
@@ -211,7 +186,10 @@ describe("localmcp", () => {
         ],
       });
 
-      // ASSERT
+      // ASSERT - Should return error response without making HTTP request
+      expect(result.isError).toBe(true);
+      expect(result.content).toBeDefined();
+      expect(result.content[0].text).toContain("File reading errors");
       console.log("result", JSON.stringify(result, null, 2));
     });
 
