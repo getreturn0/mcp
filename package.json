@@ -52,5 +52,9 @@
   ],
   "author": "return0",
   "license": "SEE LICENSE IN LICENSE",
-  "homepage": "https://getreturn0.com"
+  "homepage": "https://getreturn0.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/getreturn0/mcp.git"
+  }
 }
