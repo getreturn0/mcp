@@ -3,6 +3,7 @@ import { processVariableExtractionWithAST } from "../processVariableExtractionWi
 import { handleVariableExtractorCase } from "../handleVariableExtractorCase";
 
 process.env.WORKSPACE_FOLDER_PATHS = `${__dirname}\\examplerepo`;
+process.env.RETURN0_API_KEY = "demo";
 
 describe("localmcp", () => {
   beforeEach(() => {
